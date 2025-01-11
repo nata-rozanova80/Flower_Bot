@@ -45,23 +45,28 @@ def add_review(request, product_id):
 
 
 def add_to_cart(request):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+        if not product_id:
+            messages.error(request, "Не удалось добавить товар в корзину.")
+            return redirect("product_list")
 
-        if product_id is not None:
-            product_id = int(product_id)
+        # Получаем корзину из сессии (если её нет, создаём пустую)
+        cart = request.session.get("cart", {})
 
-            # Получаем корзину из сессии или создаём пустую
-            cart = request.session.get('cart', {})
+        # Проверяем, есть ли уже этот товар в корзине
+        if product_id in cart:
+            # Если товар уже есть, увеличиваем его количество
+            cart[product_id] += 1
+        else:
+            # Если товара нет, добавляем его с количеством 1
+            cart[product_id] = 1
 
-            # Увеличиваем количество товара в корзине
-            cart[product_id] = cart.get(product_id, 0) + 1
-            request.session['cart'] = cart
+        # Обновляем корзину в сессии
+        request.session["cart"] = cart
+        messages.success(request, "Товар успешно добавлен в корзину!")
 
-            messages.success(request, 'Товар добавлен в корзину!')
-        return redirect('product_list')  # Перенаправляем обратно к списку товаров
-
-
+    return redirect("product_list")
 
 #Просмотр корзины должен стоять после других представлений
 
