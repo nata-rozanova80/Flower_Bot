@@ -10,7 +10,7 @@ from aiogram.filters import Command
 from aiogram.types import Update
 
 # Константы
-TOKEN = '8164262122:AAG5DlcY1-6pVWkC_-qjXOcQTj22Jd-i7BM'
+TOKEN = 'toooo'
 WEBHOOK_PATH = "/webhook"
 WEBHOOK_URL = None  # Установится автоматически через LocalTunnel
 DB_PATH = 'C:\\Code\\GitHub\\Rozanova_final_project\\df\\db.sqlite3'

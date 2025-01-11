@@ -1,4 +1,4 @@
-TOKEN = '8164262122:AAG5DlcY1-6pVWkC_-qjXOcQTj22Jd-i7BM'
+TOKEN = 'toooo'
 
 ## Этот адрес нужно вручную менять после перезапуска ngrok https://d4c4-2001-41d0-ab05-00-2-0-26b.ngrok-free.app
 
